@@ -1,66 +1,61 @@
-var  ww
-var  wh
+var P1 = {x: 0, y: 0};
+var P2 = {x: 0, y: 0};
+var P3 = {x: 0, y: 0};
+var P4 = {x: 0, y: 0};
+var P5 = {x: 0, y: 0};
+var P6 = {x: 0, y: 0};
+var P7 = {x: 0, y: 0};
+var P8 = {x: 0, y: 0};
 
+function setup() 
+{
+    createCanvas(windowWidth, windowHeight)
+    P2.x=windowWidth;
+    P2.y=windowHeight;
 
-
-
-
-
-
-function setup(){
-    createCanvas(windowWidth,windowHeight);
-    ww = windowWidth;
-    wh = windowHeight;
-
-
+    P3.y=windowHeight;
+    P4.x=windowWidth;    
+    P5.x=Math.floor(windowWidth / 2);
     
+    P6.y=windowHeight;
+    P6.x=Math.floor(windowWidth / 2);
+    P7.y=Math.floor(windowHeight / 2);
+    
+    P8.x=windowWidth;
+    P8.y=Math.floor(windowHeight / 2);
 }
 
-
-
-function draw(){
-   //console.log(ww)
-    const p1 = {x: 0, y: 0}
-    const p2 = {x: ww, y:wh}
-
-    const p11 = {x: 0, y: wh/2}
-    const p21 = {x: ww, y:wh/2}
-
-    const p12 = {x: 0, y: wh}
-    const p22 = {x: ww, y:0}
-
-    const p13 = {x: ww/2, y: 0}
-    const p23 = {x: ww/2, y:wh}
-
-
-
-
-
-    line(p1.x,p1.y,p2.x,p2.y)
-    line(p11.x,p11.y,p21.x,p21.y)
-    line(p12.x,p12.y,p22.x,p22.y)
-    line(p13.x,p13.y,p23.x,p23.y)
-   
-    
-    
-
-
+function draw()
+{
+    lineaPP(P1, P2);
+    lineaPP(P3, P4);
+    lineaPP(P5, P6);
+    lineaPP(P7, P8); 
 }
 
-function ecuapp(p1,p2){
-    const dx = p2.x - p1.x
-    const dy = p2.y - p1.y
+function lineaPP(p1, p2)
+{
+    var py = p2.y - p1.y;
+    var px = p2.x - p1.x;
+    var m = py / px;
+    var b = p1.y - m * p1.x;
 
-    const m = dy / dx
-    const b = p1.y - m * p1.x
+    point(p1.x, p1.y);
+    let x = p1.x;
+    let y;
 
-    point(p1.x, p1.y)
-
-    let x = p1.x + 1 
-    let y
-    while(x!= p2.x){
-        y = m * x +b
-        point(x,y)
-        x++
+    while(x != p2.x)
+    {
+        y = m * x + b;
+        point(x, y);
+        x++;
     }
+    if(p1.x == p2.x)
+    {
+        y = p1.y;
+        while(y != p2.y){
+            point(x, y)
+            y++;
+        }
+    }    
 }
